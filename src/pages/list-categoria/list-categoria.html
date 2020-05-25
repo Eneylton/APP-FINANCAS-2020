@@ -1,0 +1,67 @@
+<ion-header no-border >
+  <ion-navbar  >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+   
+    <ion-title> <span class="cor" style="font-size: 12px;">Categorias </span> </ion-title>
+
+    <ion-searchbar placeholder="Pesquisar" *ngIf="isSearchbarOpened" showCancelButton="true"
+      (ionCancel)="isSearchbarOpened=false" (ionInput)="getDetalhes($event)">
+    </ion-searchbar>
+  
+    <ion-buttons start>
+
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+       
+        <span class="cor" style="font-size: 12px;">  {{data | date: 'dd/MM/yyyy HH:mm'}} </span>
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+
+    </ion-refresher-content>
+
+  </ion-refresher>
+
+  <ion-fab bottom right >
+    <button color="lilas" ion-fab mini (click)="openCadastro()">
+      <ion-icon  name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of categorias">
+      <ion-item >
+        <ion-icon name="md-pricetags" item-start style="color:rgb(154, 93, 204); font-size: 18px;"></ion-icon>
+        <h2><span style="font-size: 13px;"> {{item.descricao}}</span></h2>
+      </ion-item>
+      <ion-item-options side="rigth">
+        <button ion-button color="primary" (click)="openEdit(item.id,item.descricao)">
+          <ion-icon name="md-brush"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="openDelete(item.id)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+    
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="CARREGANDO...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

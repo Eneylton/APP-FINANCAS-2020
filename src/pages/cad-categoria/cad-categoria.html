@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="marinho">
+
+    <button ion-button menuToggle > 
+      <ion-icon name="menu"></ion-icon>
+      <span style="color:#9eff01; margin-left: 10px;">Adicionar</span>
+  
+    </button>
+
+    <ion-buttons start>
+      <button ion-button icon only (click)="cadastrar()">
+          
+        <ion-icon color="#019386" name="checkmark"></ion-icon>
+
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label floating> Descricao</ion-label>
+    <ion-input type="text" [(ngModel)]="descricao"></ion-input>
+  </ion-item>
+
+</ion-content>

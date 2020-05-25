@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Editar</ion-title>
+    <ion-buttons start>
+      <button ion-button icon only (click)="editar()">
+          
+        <ion-icon color="#019386" name="checkmark"></ion-icon>
+
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-item>
+    <ion-label floating> Descricao</ion-label>
+    <ion-input type="text" [(ngModel)]="descricao"></ion-input>
+  </ion-item>
+
+</ion-content>

@@ -1,0 +1,78 @@
+<ion-header no-border [color]="soma < '0' ? 'red' : 'marinho'">
+  <ion-navbar [color]="soma <'0' ? 'red' : 'marinho'">
+  
+    <ion-title> <span style="color:#9eff01; font-weight: lighter; font-size: 14px;">Detalhes</span> </ion-title>
+
+    <ion-searchbar placeholder="Pesquisar" *ngIf="isSearchbarOpened" showCancelButton="true"
+      (ionCancel)="isSearchbarOpened=false" (ionInput)="getDetalhes($event)">
+    </ion-searchbar>
+  
+    <ion-buttons start>
+
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+       
+        <span class="cor" > {{soma | currency: 'BRL'}} </span>
+        <ion-icon class="cor" name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+
+    </ion-refresher-content>
+
+  </ion-refresher>
+
+  <div *ngIf="detalhes.length > 0 ; else vazio">
+
+   
+  <ion-list>
+    <ion-item *ngFor="let item of detalhes">
+      <ion-icon style="font-size: 18px;" name="square" item-start 
+      [color]="item.status == '1' ? 'primary' 
+      : item.status == '2' ? 'rosa' 
+      : item.status == '3' ? 'red' 
+      : item.status  == '4' ? 'secondary' : 'amarelo'"></ion-icon>
+
+      <span>{{item.transacao}} </span>
+      <span style="font-size: 13px;" item-end>{{item.valor | currency: 'BRL'}} </span>
+      
+      <p>
+
+        <span style="font-size: 12px;">{{item.data | date: 'dd/MM/yyyy HH:mm'}} </span>
+
+      </p>
+
+    </ion-item>
+  </ion-list>
+
+
+  </div>
+
+  <ng-template #vazio>
+
+    <ion-card>
+      <ion-item>
+
+        <h3>Nenhuma movimentação .....</h3>
+         
+      </ion-item>
+
+    </ion-card>
+
+  </ng-template>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="CARREGANDO...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

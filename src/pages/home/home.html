@@ -1,18 +1,54 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+<ion-header [color]="soma < '0' ? 'red' : 'marinho'">
+  <ion-navbar [color]="soma <'0' ? 'red' : 'marinho'" hideBackButton="true">
+    <ion-label style="text-align:right; font-size: 16px;" [color]="soma < '0' ? 'secondary' : 'laranja'">
+      {{ soma | currency: 'BRL' }}</ion-label>
+    <button ion-button menuToggle > 
       <ion-icon name="menu"></ion-icon>
+     <span class="cor"> Lucro </span> 
     </button>
-    <ion-title>Home</ion-title>
+
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+   
+  <p></p>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+      <canvas #pieCanvas></canvas>
+      <p></p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<div *ngIf="fluxos.length > '0' ; else vazio">
+
+  <ion-list>
+    <ion-item *ngFor="let item of fluxos">
+
+      
+
+      <ion-icon name="square" item-start style="font-size: 14px !important; padding-top: 8px !important;"
+        [color]="item.status == '1' ? 'primary' 
+                                               : item.status == '2' ? 'rosa' 
+                                               : item.status == '3' ? 'red' 
+                                               : item.status  == '4' ? 'secondary' : 'amarelo'"></ion-icon>
+
+      <span item-start class="tamanho">{{item.descricao}}</span>
+      <span item-end class="tamanho">{{item.total | currency : 'BRL'}}</span>
+
+    </ion-item>
+  </ion-list>
+
+
+</div>
+
+<ng-template #vazio>
+
+ 
+    <ion-item>
+      <h3 style="text-align: center;">Menhuma Movimentação</h3>
+    </ion-item>
+
+
+</ng-template>
+  
+
 </ion-content>

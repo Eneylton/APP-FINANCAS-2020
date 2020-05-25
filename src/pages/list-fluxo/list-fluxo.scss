@@ -1,0 +1,23 @@
+page-list-fluxo {
+
+
+    .texto{
+        color: #9eff01; 
+        margin-left: 20px;
+    }
+
+    ion-label {
+        margin: 0;
+        display: block;
+        overflow: hidden;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        font-size: small;
+        text-overflow: ellipsis;
+        white-space: unset;
+        margin-right: 50px;
+    }
+
+}

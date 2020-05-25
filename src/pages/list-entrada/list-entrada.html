@@ -1,0 +1,80 @@
+<ion-header no-border >
+  <ion-navbar [color]="soma > '0' ? 'secondary' : 'marinho'" >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+   
+    <span style="color: cornsilk;">Contas a Receber  </span>
+
+    <ion-searchbar placeholder="Pesquisar" *ngIf="isSearchbarOpened" showCancelButton="true"
+      (ionCancel)="isSearchbarOpened=false" (ionInput)="getFinanceiro($event)">
+    </ion-searchbar>
+  
+    <ion-buttons start>
+
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+        <ion-label [color]="soma > '0' ? 'escuro' : 'laranja'" > {{soma | currency: 'BRL'}} </ion-label> 
+        <ion-icon  [color]="soma > '0' ? 'escuro' : 'laranja'" name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+
+    </ion-refresher-content>
+
+  </ion-refresher>
+
+  <div *ngIf="contas.length > '0'; else vazio">
+
+    <ion-list>
+      <ion-item *ngFor="let item of contas">
+
+        <ion-icon style="font-size: 16px;" name="square" item-start
+                  [color]="item.status == '1' ? 'secondary' : 'red'"></ion-icon>
+    
+        <ion-label>{{item.categoria}}  
+        <p style="font-size: 10px;">{{item.data | date : 'dd/MM/yyyy'}} - {{item.valor | currency : 'BRL'}}</p></ion-label> 
+
+
+        <ion-badge item-end [color]="item.vencimento <= '3' ? 'red' : 'laranja'">
+        
+          <span style="font-size: 10px;" *ngIf="item.vencimento >= '1'" > {{item.vencimento}} Dias  </span>
+  
+          <span style="font-size: 10px;" *ngIf="item.vencimento == '0'" > Dia do Pagemento  </span>
+          <span style="font-size: 10px;" *ngIf="item.vencimento < '0'" > Pendente  </span>
+        
+        </ion-badge>
+        
+        
+        <ion-toggle disabled="false" color="marinho" [(ngModel)]="item.pago" (click)="editar(item.id,item.pago )"></ion-toggle>
+      </ion-item>
+
+
+    </ion-list>
+
+  </div>
+
+  <ng-template #vazio>
+
+    <ion-card>
+      <ion-item>
+        <span style="text-align: center;"> Nenhuma Movimentação</span>
+      </ion-item>
+    </ion-card>
+
+  </ng-template>
+
+   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="CARREGANDO...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

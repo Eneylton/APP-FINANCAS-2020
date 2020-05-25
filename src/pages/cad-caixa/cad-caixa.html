@@ -1,0 +1,108 @@
+<ion-header no-border >
+  <ion-navbar color="marinho" >
+
+    <ion-title><span  class="tamanho"> Fluxo de Caixa </span></ion-title>
+  
+    <ion-buttons start>
+
+      <button ion-button (click)="openHome()"> 
+        <ion-icon name="md-close" ></ion-icon>
+      </button>
+    
+      <button ion-button icon only (click)="cadastrar()" >
+          
+        <ion-icon color="#019386" name="checkmark"></ion-icon>
+
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list style="margin-top: 15px;">
+
+    
+      <ion-item>
+        <ion-label style="font-size: 14px;">Categoria</ion-label>
+        <ion-select [(ngModel)]="categoria_id">
+          <ion-option *ngFor="let item of categorias" value="{{item.id}}">{{item.descricao}}</ion-option>
+        
+         
+        </ion-select>
+      </ion-item>
+  
+
+      <ion-item>
+        <ion-label style="font-size: 14px;">Forma de Pagamento</ion-label>
+        <ion-select [(ngModel)]="pagamento_id">
+          <ion-option *ngFor="let item of pagamentos" value="{{item.id}}">{{item.descricao}}</ion-option>
+          
+         
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="font-size: 14px;">Data de Pagamento</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="data_pagamento"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" placeholder="R$" [(ngModel)]="valor" [brmasker]="{money: true, decimalCaracter: '.', decimal: '2'}"  ></ion-input>
+      
+      </ion-item>
+
+    
+
+      <ion-list radio-group [(ngModel)]="pago">
+
+      <div style="margin-left:7px; margin-top: 20px; padding: 5px; text-align: center; background-color: #a8a8a85d;">Status</div>
+      
+        <ion-item>
+          <ion-label style="font-size: 14px;">Pago</ion-label>
+          <ion-radio color="secondary" value="1"></ion-radio>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label style="font-size: 14px;">Pendente</ion-label>
+          <ion-radio color="danger" value="0"></ion-radio>
+        </ion-item>
+      
+      </ion-list>
+
+      <ion-list radio-group [(ngModel)]="status_id">
+
+        <div style="margin-left:7px; margin-top: 20px; padding: 5px; text-align: center; background-color: #a8a8a85d;">Entra / Saida</div>
+        
+          <ion-item>
+            <ion-label style="font-size: 14px;">Receita</ion-label>
+            <ion-radio value="1"></ion-radio>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label style="font-size: 14px;">Despesas</ion-label>
+            <ion-radio color="danger" value="2"></ion-radio>
+          </ion-item>
+        
+        </ion-list>
+
+        <ion-list radio-group [(ngModel)]="deposito_id">
+
+          <div style="margin-left:7px; margin-top: 20px; padding: 5px; text-align: center; background-color: #a8a8a85d;">Trasações</div>
+          
+            <ion-item>
+              <ion-label style="font-size: 14px;">Caixa</ion-label>
+              <ion-radio checked="true" color="laranja" value="1"></ion-radio>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label style="font-size: 14px;">Agência Bancária</ion-label>
+              <ion-radio color="lilas" value="2"></ion-radio>
+            </ion-item>
+          
+          </ion-list>
+
+
+  </ion-list>
+</ion-content>

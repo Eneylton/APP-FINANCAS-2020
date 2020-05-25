@@ -1,0 +1,109 @@
+<ion-header no-border >
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu" class="cor-icon"></ion-icon>
+    </button>
+    <ion-title>Gerenciar Contas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding >
+  <ion-card-header>
+    <span style="font-size: 13px !important;">FLUXO DE CAIXA</span>
+   </ion-card-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+
+        <ion-card>
+          <button  style="background-color: #fffefe00; color: rgb(27, 182, 66);" (click)="openReceber()">
+            <ion-icon class="ion-icon " name="md-add-circle"></ion-icon>
+            <br>
+            <span style="color:rgb(240, 240, 240) !important">RECEBER</span>
+          </button>
+        </ion-card>
+    
+    </ion-col>
+    
+    <ion-col col-6>
+        
+      <ion-card>
+        <button  style="background-color: #fffefe00; color:#ff3300"   (click)="openPagar()">
+          <ion-icon class="fa-minus-circle ion-icon"></ion-icon>
+          <br>
+            <span style="color:rgb(240, 240, 240) !important">PAGAR</span> 
+        </button>
+      </ion-card>
+  
+   </ion-col>
+
+    </ion-row>
+
+    <ion-card-header>
+      <span style="font-size: 13px !important;">AGÊNCIA BANCÁRIA</span>
+    </ion-card-header>
+
+ 
+   <ion-row>
+      <ion-col col-6>
+        
+        <ion-card>
+          <button  style="background-color: #fffefe00; color: rgb(187, 255, 0);" (click)="openEntrada()">
+            <ion-icon class="fa-money ion-icon "></ion-icon>
+            <br>
+            <span style="color:rgb(240, 240, 240) !important">ENTRADA</span> 
+           
+          </button>
+      </ion-card>
+    
+    </ion-col>
+    
+    <ion-col col-6>
+        
+      <ion-card>
+        <button  style="background-color: #fffefe00; color:#ff7300" (click)="openSaida()">
+          <ion-icon class="fa-usd ion-icon"></ion-icon>
+          <br>
+            <span style="color:rgb(240, 240, 240) !important">SAIDA</span>
+        </button>
+    </ion-card>
+  
+  </ion-col> 
+</ion-row>
+
+<ion-card-header>
+  <span style="font-size: 13px !important;">ESTATÍSTICA</span>
+</ion-card-header>
+
+<ion-row>
+  
+  <ion-col col-6>
+    
+    <ion-card>
+      <button  style="background-color: #fffefe00; color: aqua;">
+        <ion-icon class="fa-bar-chart ion-icon "></ion-icon>
+        <br>
+            <span style="color:rgb(240, 240, 240) !important">RECEITAS</span>
+      </button>
+  </ion-card>
+
+</ion-col>
+
+<ion-col col-6>
+    
+  <ion-card>
+    <button  style="background-color: #fffefe00; color: rgb(255, 187, 1);">
+      <ion-icon class=" fa-pie-chart  ion-icon " ></ion-icon>
+      <br>
+      <span style="color:rgb(240, 240, 240) !important">DESPESAS</span>
+    </button>
+</ion-card>
+
+</ion-col>
+</ion-row>
+
+
+  </ion-grid>
+
+</ion-content>

@@ -1,3 +1,110 @@
 page-home {
 
+    ion-content{
+       
+        background-repeat: no-repeat !important;
+        background-position: top;
+        background-image: url(../../assets/imgs/back2.jpg)!important;
+        // background: rgba(187, 187, 187, 0.4) !important;
+    }
+
+    .cor-icon{
+
+        color: #9eff01;
+      
+
+    }
+
+    .item-block {
+        margin: 3px;
+     
+    }
+
+    .toolbar-title-md {
+        padding: 0 10px !important;
+        font-size: 1.5rem !important;
+        font-weight: 100 !important;
+        color: #9eff01;
+    }
+
+    .toolbar-background-md {
+        border-color: #010514;
+        background-image: url(../../assets/imgs/07.jpg) !important;
+        background-repeat: no-repeat !important;
+        background-size: 800px 200px !important;
+    }
+
+
+    .ion-icon{
+        
+        font-size: 20px !important;
+       
+    }
+
+    .card-header-md {
+        text-align: center;
+        font-size: 1.6rem !important;
+        color: #222 !important;
+        padding: 5px !important;
+    }
+
+    ion-card{
+     border-radius: 10px !important;
+     text-align: center;
+        background-image: url(../../assets/imgs/01.jpg) !important;
+        background-repeat: no-repeat !important;
+        background-size: 1000px 80px !important;
+       
+        padding: 13px;
+        color:#fff
+    }
+
+    .icone {
+
+        font-size: 16px !important;
+        font-weight: lighter !important;
+
+      
+        
+    }
+
+    .tamanho {
+
+        font-size: 13px !important;
+        font-weight: lighter !important;
+        
+    }
+
+    // .item-md.item-block .item-inner {
+    //     padding-right: 9px;
+    //     margin-top: -10px;
+    //     border-bottom: 1px solid #dedede;
+    // }
+
+    
+    .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end] {
+        margin: 13px 8px 9px 0 !important;
+    }
+
 }
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: #570f69;
+    font-size: 19px;
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+}
+
+
+.tab-button-text {
+    font-size: 10px !important;
+   
+}
+
+.tabs-md .tab-button-icon {
+   
+    font-size: 16px;
+   
+}
+
+

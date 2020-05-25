@@ -14,3 +14,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@font-face{
+   font-family: Fonts;
+
+   src: url(../assets/fonts/Quisans/Quicksand-VariableFont_wght.ttf)
+}
+
+body, span, button,h1,h2,h3,h4,h5, ion-item, ion-title, input,li,menu,menuitem {
+
+   font-family: 'Fonts' !important;
+
+}
+
+
+$fa-font-path: "../assets/fonts" !default; 
+@import "font-awesome"; 
+i[class^="fa-"], ion-icon[class^="fa-"] {    
+   font-family: "FontAwesome" !important;
+}

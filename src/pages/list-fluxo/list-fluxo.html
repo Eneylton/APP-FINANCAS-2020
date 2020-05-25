@@ -1,0 +1,86 @@
+<ion-header no-border >
+  <ion-navbar [color]="soma < '0' ? 'red' : 'marinho'" >
+    
+   
+    <span class="texto" > Movimentações  </span>
+
+    <ion-searchbar placeholder="Pesquisar" *ngIf="isSearchbarOpened" showCancelButton="true"
+      (ionCancel)="isSearchbarOpened=false" (ionInput)="getFinanceiro($event)">
+    </ion-searchbar>
+  
+    <ion-buttons start>
+
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+        <span style="color:#fda500"> {{soma | currency: 'BRL'}} </span>
+        <ion-icon style="color:#fda500" name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+
+    </ion-refresher-content>
+
+  </ion-refresher>
+
+  <div *ngIf="financeiros.length > '0'; else vazio">
+
+    <ion-list>
+      <ion-item *ngFor="let item of financeiros">
+
+        <ion-icon style="font-size: 16px;" name="square" item-start
+                  [color]="item.status == '1' ? 'secondary' : 'red'"></ion-icon>
+    
+        <ion-label>{{item.categoria}} 
+        <p style="font-size: 10px;">{{item.previsao_pag | date : 'dd/MM/yyyy'}}</p> {{item.valor | currency : 'BRL'}}</ion-label> 
+
+
+        <ion-badge item-end [color]="item.vencimento <= '0' ? 'red' 
+                                                            : item.vencimento == '1' ? 'caramelo' 
+                                                            : item.vencimento == '2' ? 'caramenlo' 
+                                                            : item.vencimento == '3' ? 'caramenlo' 
+                                                            : item.vencimento == '4' ? 'marron' 
+                                                            : item.vencimento == '5' ? 'marron' : 'laranja'
+                                                            
+                                                            ">
+        
+          <span style="font-size: 10px;" *ngIf="item.vencimento >= '1'" > {{item.vencimento}} Dias  </span>
+  
+          <span style="font-size: 10px;" *ngIf="item.vencimento == '0'" > Dia do Pagemento  </span>
+          <span style="font-size: 10px; color: rgb(255, 187, 0);" *ngIf="item.vencimento < '0' && item.pago == true" >* Pago * </span>
+          <span style="font-size: 10px;" *ngIf="item.vencimento < '0' && item.pago == false" > pendente  </span>
+        
+        </ion-badge>
+        
+        
+        <ion-toggle disabled="false" color="marinho" [(ngModel)]="item.pago" (click)="editar(item.id,item.pago )"></ion-toggle>
+      </ion-item>
+
+
+    </ion-list>
+
+  </div>
+
+  <ng-template #vazio>
+
+    <ion-card>
+      <ion-item>
+        <span style="text-align: center;"> Nenhuma Movimentação</span>
+      </ion-item>
+    </ion-card>
+
+  </ng-template>
+
+   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="CARREGANDO...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
